@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Document(collection = "users")
@@ -17,4 +19,5 @@ public class User {
     @Indexed(unique = true)
     private String email;
     private String role = "USER";
+    private List<Income> incomeEntries = new ArrayList<>();
 }

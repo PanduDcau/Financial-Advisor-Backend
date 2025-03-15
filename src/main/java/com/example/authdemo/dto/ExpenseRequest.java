@@ -6,7 +6,6 @@ import java.util.Date;
 
 public record ExpenseRequest(
         @NotNull @Positive Double amount,
-        @NotBlank String category,
         Date date,
         String description
 ) {}

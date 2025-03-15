@@ -49,4 +49,11 @@ public class ExpenseController {
         User user = getAuthenticatedUser(userDetails);
         return ResponseEntity.ok(expenseService.getExpensesByCategory(user, category));
     }
+
+    @GetMapping("/current-month")
+    public ResponseEntity<?> getCurrentMonthExpenses(
+            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        User user = getAuthenticatedUser(userDetails);
+        return ResponseEntity.ok(expenseService.getCurrentMonthExpenses(user));
+    }
 }

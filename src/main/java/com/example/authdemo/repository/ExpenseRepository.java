@@ -8,4 +8,5 @@ import java.util.List;
 public interface ExpenseRepository extends MongoRepository<Expense, String> {
     List<Expense> findByUser(User user);
     List<Expense> findByUserAndCategory(User user, String category);
+    List<Expense> findByUserAndMonth(User user, String month);
 }

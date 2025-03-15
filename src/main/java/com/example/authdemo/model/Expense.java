@@ -1,5 +1,6 @@
 package com.example.authdemo.model;
 
+import com.example.authdemo.service.ExpenseService;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -18,8 +19,10 @@ public class Expense {
     private String category;
     private Date date;
     private String description;
+    private String month;
 
-    public enum Category {
-        MEDICAL, GROCERY, FOOD, HOUSING, BILLS, PERSONAL_CARE, TRANSPORT
+    public void setDate(Date date) {
+        this.date = date;
+        this.month = ExpenseService.getMonthFromDate(date);
     }
 }

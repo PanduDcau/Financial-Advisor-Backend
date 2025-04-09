@@ -1,6 +1,7 @@
 package com.example.authdemo.controller;
 
 import com.example.authdemo.dto.IncomeRequest;
+import com.example.authdemo.dto.LevelRequest;
 import com.example.authdemo.model.User;
 import com.example.authdemo.repository.UserRepository;
 import com.example.authdemo.service.UserService;
@@ -38,5 +39,22 @@ public class IncomeController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return ResponseEntity.ok(user.getIncomeEntries());
+    }
+
+    @GetMapping("/level")
+    public ResponseEntity<Integer> getLevel(Authentication authentication) {
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user.getLevel());
+    }
+
+    @PutMapping("/level")
+    public ResponseEntity<?> updateLevel(@RequestBody LevelRequest request, Authentication authentication) {
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        userService.updateUserLevel(user, request.level());
+        return ResponseEntity.ok().build();
     }
 }

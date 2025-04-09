@@ -20,4 +20,5 @@ public class User {
     private String email;
     private String role = "USER";
     private List<Income> incomeEntries = new ArrayList<>();
+    private Integer level = 0;
 }

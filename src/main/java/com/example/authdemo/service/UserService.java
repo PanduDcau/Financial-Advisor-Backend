@@ -33,4 +33,9 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public User updateUserLevel(User user, int level) {
+        user.setLevel(level);
+        return userRepository.save(user);
+    }
 }
